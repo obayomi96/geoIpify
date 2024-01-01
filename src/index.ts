@@ -11,7 +11,6 @@ export const geoIpify = async (apiKey: string) => {
       return 'Add an apiKey';
     }
   } catch (error) {
-    console.log('err', error);
     throw error;
   }
 };

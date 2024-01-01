@@ -2,18 +2,18 @@
 
 > Get your public IP address, network details, and internet service provider info.
 
-Using the [`Geo Ipify`](https://geo.ipify.org/) 
+Using the [`Geo Ipify`](https://geo.ipify.org/)
 
 This is unofficial but on [Ipify API](https://www.ipify.org), to get more information from an ip address by passing an `APIKEY` gotten from Geo Ipify website.
 
-> Retrieve your api key from [`Geo Ipify`](https://geo.ipify.org/) 
-
+> Retrieve your api key from [`Geo Ipify`](https://geo.ipify.org/)
 
 ## Install
-```js
-import geoIpify from 'geo-ipify';
 
-console.log(await geoIpify("apikey"));
+```js
+import { geoIpify } from 'geo-ipify';
+
+console.log(await geoIpify('apikey'));
 //=> {
 //     "ip": "8.8.8.8",
 //     "location": {
@@ -44,3 +44,9 @@ console.log(await geoIpify("apikey"));
 ### geoIpify(options?)
 
 > Returns a `Promise<string>` with an object containing your ip address and other network and device information.
+
+## Related
+
+- [ipify by Sindresorhus](https://github.com/sindresorhus/ipify) - Get your public IP address
+- [ipify-cli](https://github.com/sindresorhus/ipify-cli) - CLI for the above module
+- [internal-ip](https://github.com/sindresorhus/internal-ip) - Get your internal IPv4 or IPv6 address
