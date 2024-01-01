@@ -45,11 +45,3 @@ console.log(result.data);
 ### geoIpify(apiKey)
 
 > Returns a `Promise<object>` with an object containing your ip address and other network and device information.
-
-## Related
-
-> These APIs by [Sindresorhus](https://github.com/sindresorhus) retrieves public ip address.
-
-- [ipify by Sindresorhus](https://github.com/sindresorhus/ipify) - Get your public IP address
-- [ipify-cli](https://github.com/sindresorhus/ipify-cli) - CLI for the above module
-- [internal-ip](https://github.com/sindresorhus/internal-ip) - Get your internal IPv4 or IPv6 address

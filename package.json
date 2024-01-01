@@ -1,5 +1,5 @@
 {
-  "version": "0.3.6",
+  "version": "0.3.7",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -28,6 +28,13 @@
     "type": "git",
     "url": "git+https://github.com/obayomi96/geoIpify.git"
   },
+  "keywords": [
+    "network",
+    "ip address",
+    "isp",
+    "node",
+    "api"
+  ],
   "prettier": {
     "printWidth": 80,
     "semi": true,
