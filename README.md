@@ -11,7 +11,7 @@ This is unofficially built on [Ipify API](https://www.ipify.org), to get more in
 ## Install
 
 ```js
-import { geoIpify } from 'geo-ipify';
+import geoIpify from 'geo-ipify';
 
 const result = await geoIpify('apikey');
 console.log(result.data);
