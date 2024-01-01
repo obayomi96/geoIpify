@@ -4,7 +4,7 @@
 
 Using the [`Geo Ipify`](https://geo.ipify.org/)
 
-This is unofficial but on [Ipify API](https://www.ipify.org), to get more information from an ip address by passing an `APIKEY` gotten from Geo Ipify website.
+This is unofficially built on [Ipify API](https://www.ipify.org), to get more information from an ip address by passing an `APIKEY` gotten from Geo Ipify website.
 
 > Retrieve your api key from [`Geo Ipify`](https://geo.ipify.org/)
 
@@ -46,6 +46,8 @@ console.log(await geoIpify('apikey'));
 > Returns a `Promise<string>` with an object containing your ip address and other network and device information.
 
 ## Related
+
+> This free APIs by [Sindresorhus](https://github.com/sindresorhus) retrieves public p address. 
 
 - [ipify by Sindresorhus](https://github.com/sindresorhus/ipify) - Get your public IP address
 - [ipify-cli](https://github.com/sindresorhus/ipify-cli) - CLI for the above module
