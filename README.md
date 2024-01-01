@@ -43,7 +43,7 @@ console.log(await geoIpify('apikey'));
 
 ### geoIpify(options?)
 
-> Returns a `Promise<string>` with an object containing your ip address and other network and device information.
+> Returns a `Promise<object>` with an object containing your ip address and other network and device information.
 
 ## Related
 
