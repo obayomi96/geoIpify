@@ -41,13 +41,13 @@ console.log(await geoIpify('apikey'));
 
 ## API
 
-### geoIpify(options?)
+### geoIpify(apiKey)
 
 > Returns a `Promise<object>` with an object containing your ip address and other network and device information.
 
 ## Related
 
-> This free APIs by [Sindresorhus](https://github.com/sindresorhus) retrieves public p address. 
+> These APIs by [Sindresorhus](https://github.com/sindresorhus) retrieves public ip address. 
 
 - [ipify by Sindresorhus](https://github.com/sindresorhus/ipify) - Get your public IP address
 - [ipify-cli](https://github.com/sindresorhus/ipify-cli) - CLI for the above module
