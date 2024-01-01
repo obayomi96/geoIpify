@@ -13,7 +13,8 @@ This is unofficially built on [Ipify API](https://www.ipify.org), to get more in
 ```js
 import { geoIpify } from 'geo-ipify';
 
-console.log(await geoIpify('apikey'));
+const result = await geoIpify('apikey');
+console.log(result.data);
 //=> {
 //     "ip": "8.8.8.8",
 //     "location": {
@@ -47,7 +48,7 @@ console.log(await geoIpify('apikey'));
 
 ## Related
 
-> These APIs by [Sindresorhus](https://github.com/sindresorhus) retrieves public ip address. 
+> These APIs by [Sindresorhus](https://github.com/sindresorhus) retrieves public ip address.
 
 - [ipify by Sindresorhus](https://github.com/sindresorhus/ipify) - Get your public IP address
 - [ipify-cli](https://github.com/sindresorhus/ipify-cli) - CLI for the above module
