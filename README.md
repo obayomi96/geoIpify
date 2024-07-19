@@ -60,7 +60,7 @@ console.log(result.data);
 //     "isp": "Google LLC"
 // }
 ```
-> See live example usage [here](https://jetvisionv3.netlify.app/dashboard)
+> See live example usage [here](https://jetvisionv3.netlify.app)
 
 ## API
 
