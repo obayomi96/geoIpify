@@ -1,10 +1,16 @@
 import axios from 'axios';
 
-export async function getIpAddressAndNetworkInfo(apiKey: string) {
+export async function getIpAddressAndNetworkInfo(
+  apiKey: string,
+  ipAddress?: string
+) {
   try {
-    const GEO_IPIFY_ENDPOINT = `https://geo.ipify.org/api/v2/country?apiKey=${apiKey}`;
+    const GEO_IPIFY_ENDPOINT = ipAddress
+      ? `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`
+      : `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}`;
+    const url = GEO_IPIFY_ENDPOINT;
     if (apiKey) {
-      const result = await axios.get(GEO_IPIFY_ENDPOINT);
+      const result = await axios.get(url);
       if ('development' === process.env.NODE_ENV) {
         console.log('===>', result);
       }
@@ -17,10 +23,13 @@ export async function getIpAddressAndNetworkInfo(apiKey: string) {
   }
 }
 
-export async function getIpAddressOnly() {
+export async function getIpAddressOnly(ipAddress?: string) {
   try {
-    const IPIFY_ENDPOINT = `https://api.ipify.org?format=json`;
-    const result = await axios.get(IPIFY_ENDPOINT);
+    const IPIFY_ENDPOINT = ipAddress
+      ? `https://api.ipify.org?format=json?ipAddress=${ipAddress}`
+      : `https://api.ipify.org?format=json`;
+    const url = IPIFY_ENDPOINT;
+    const result = await axios.get(url);
     if ('development' === process.env.NODE_ENV) {
       console.log('===>', result);
     }
