@@ -33,6 +33,8 @@ console.log(result.data);
 // IP address with all network information
 const result = await getIpAddressAndNetworkInfo('apikey', '8.8.8.8');
 // The IP address parameter is optional
+// getIpAddressAndNetworkInfo('apikey');
+
 console.log(result.data);
 //=> {
 //     "ip": "8.8.8.8",
@@ -58,7 +60,7 @@ console.log(result.data);
 //     "isp": "Google LLC"
 // }
 ```
-> See live example usage [here](jetvisionv3.netlify.app)
+> See live example usage [here](https://jetvisionv3.netlify.app/dashboard)
 
 ## API
 
@@ -67,4 +69,4 @@ console.log(result.data);
 
 ### getIpAddressAndNetworkInfo(apiKey, ipAddress?)
 
-> Returns a `Promise<object>` with an object containing your ip address and other network and device information. You need to add an API key. For this example you can add an optional ipAddress parameter if the IP you want to check is a specific IP address.
+> Returns a `Promise<object>` with an object containing your ip address and other network and device information, for this you need to add an API key. You can add an optional ipAddress parameter if the IP you want to check is a specific IP address.
