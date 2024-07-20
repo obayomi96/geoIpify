@@ -11,7 +11,7 @@ This is built on [Ipify API](https://www.ipify.org), to get user's IP address & 
 > To get IP address with all it's network information, retrieve a free API key from here https://geo.ipify.org/
 
 ## Install
-> npm install `geo-ipify` or yarn install `geo-ipify`
+> npm install `geo-ipify` or yarn add `geo-ipify`
 
 ## Usage
 > Use the `getIpAddressOnly()` to get only user's IP address. You DO NOT need to add an API key
@@ -69,6 +69,6 @@ console.log(result.data);
 ### getIpAddressOnly()
 > Returns a `Promise<object>` with an object containing your ip address only. You can explicitly pass in an optional ipAddress parameter as well if you want to.
 
-### getIpAddressAndNetworkInfo(apiKey, ipAddress?)
+### getIpAddressAndNetworkInfo(apiKey)
 
 > Returns a `Promise<object>` with an object containing your ip address and other network and device information, for this you need to add an API key. You can add an optional ipAddress parameter if the IP you want to check is a specific IP address.
