@@ -1,5 +1,5 @@
-const axios = require('axios');
 import { GEOAPI, GEOAPIV2 } from './utils/constants';
+const axios = require('axios');
 
 export async function getIpAddressAndNetworkInfo(
   apiKey: string,

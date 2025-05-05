@@ -27,6 +27,6 @@ export const mockGeoIpifyResponse = {
   },
 };
 
-export  const mockIpifyResponse = {
+export const mockIpifyResponse = {
   data: { ip: '1.1.1.1' },
 };
