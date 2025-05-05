@@ -12,9 +12,6 @@ export async function getIpAddressAndNetworkInfo(
     const url = GEO_IPIFY_ENDPOINT;
     if (apiKey.length) {
       const result = await axios.get(url);
-      if ('development' === process.env.NODE_ENV) {
-        console.log('===>', result);
-      }
       return result;
     } else {
       return 'Add an apiKey';
@@ -31,9 +28,6 @@ export async function getIpAddressOnly(ipAddress?: string) {
       : `${GEOAPI}?format=json&reverseIp=1`;
     const url = IPIFY_ENDPOINT;
     const result = await axios.get(url);
-    if ('development' === process.env.NODE_ENV) {
-      console.log('===>', result);
-    }
     return result;
   } catch (error) {
     throw error;
