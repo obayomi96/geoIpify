@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -25,6 +25,11 @@
       "pre-commit": "tsdx lint"
     }
   },
+  "precommit": [
+    "lint",
+    "test",
+    "build"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/obayomi96/geoIpify.git"
