@@ -22,7 +22,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint && npm run test && npm run build"
+      "pre-commit": "npm run lint && npm run test && npm run build"
     }
   },
   "precommit": [
@@ -66,6 +66,7 @@
     "@types/jest": "^29.5.14",
     "husky": "^8.0.3",
     "jest": "^29.7.0",
+    "pre-commit": "^1.2.2",
     "size-limit": "^11.0.1",
     "ts-jest": "^29.3.2",
     "tsdx": "^0.14.1",

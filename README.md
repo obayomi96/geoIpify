@@ -1,10 +1,8 @@
-# Geo Ipify
+# Geo Ipify [![codecov](https://codecov.io/gh/obayomi96/geoIpify/graph/badge.svg?token=NRIQWKBIBM)](https://codecov.io/gh/obayomi96/geoIpify)
 
 > Easily get your public IP address, network details, and internet service provider info.
 
 > See live example usage [here](https://jetvisionv3.netlify.app)
-
-[![codecov](https://codecov.io/gh/obayomi96/geoIpify/graph/badge.svg?token=NRIQWKBIBM)](https://codecov.io/gh/obayomi96/geoIpify)
 
 Using the [`Geo Ipify`](https://geo.ipify.org/)
 
