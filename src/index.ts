@@ -13,7 +13,9 @@ export async function getIpAddressAndNetworkInfo(
       return 'Add an apiKey';
     }
 
-    const response = await fetch(GEO_IPIFY_ENDPOINT);
+    const response = await fetch(GEO_IPIFY_ENDPOINT, {
+      mode: 'no-cors',
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -30,7 +32,9 @@ export async function getIpAddressOnly(ipAddress?: string) {
       ? `${GEOAPI}?format=json&ipAddress=${ipAddress}&reverseIp=1`
       : `${GEOAPI}?format=json&reverseIp=1`;
 
-    const response = await fetch(IPIFY_ENDPOINT);
+    const response = await fetch(IPIFY_ENDPOINT, {
+      mode: 'no-cors',
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }

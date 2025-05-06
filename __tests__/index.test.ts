@@ -20,10 +20,16 @@ describe('Geopify Service API', () => {
         json: () => Promise.resolve(mockGeoIpifyResponse),
       });
 
-      const result = await getIpAddressAndNetworkInfo('fake-api-key', '8.8.8.8');
+      const result = await getIpAddressAndNetworkInfo(
+        'fake-api-key',
+        '8.8.8.8'
+      );
 
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining('ipAddress=8.8.8.8')
+        expect.stringContaining('ipAddress=8.8.8.8'),
+        {
+          mode: 'no-cors',
+        }
       );
       expect(result).toEqual(mockGeoIpifyResponse);
     });
@@ -37,7 +43,10 @@ describe('Geopify Service API', () => {
       const result = await getIpAddressAndNetworkInfo('fake-api-key', '');
 
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining('apiKey=fake-api-key')
+        expect.stringContaining('apiKey=fake-api-key'),
+        {
+          mode: 'no-cors',
+        }
       );
       expect(result).toEqual(mockGeoIpifyResponse);
     });
@@ -58,9 +67,9 @@ describe('Geopify Service API', () => {
 
       const result = await getIpAddressOnly();
 
-      expect(fetch).toHaveBeenCalledWith(
-        `${GEOAPI}?format=json&reverseIp=1`
-      );
+      expect(fetch).toHaveBeenCalledWith(`${GEOAPI}?format=json&reverseIp=1`, {
+        mode: 'no-cors',
+      });
       expect(result).toEqual(mockIpifyResponse);
     });
 
@@ -73,7 +82,10 @@ describe('Geopify Service API', () => {
       const result = await getIpAddressOnly('1.1.1.1');
 
       expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining('ipAddress=1.1.1.1')
+        expect.stringContaining('ipAddress=1.1.1.1'),
+        {
+          mode: 'no-cors',
+        }
       );
       expect(result).toEqual(mockIpifyResponse);
     });
@@ -84,7 +96,9 @@ describe('Geopify Service API', () => {
         status: 404,
       });
 
-      await expect(getIpAddressOnly()).rejects.toThrow('HTTP error! Status: 404');
+      await expect(getIpAddressOnly()).rejects.toThrow(
+        'HTTP error! Status: 404'
+      );
     });
   });
 });
