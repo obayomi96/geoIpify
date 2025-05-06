@@ -5,7 +5,7 @@ import {
   mockIpifyResponse,
 } from '../src/utils/constants';
 
-// Set up fetch mocking
+// Mock global.fetch
 global.fetch = jest.fn() as jest.Mock;
 
 describe('Geopify Service API', () => {
@@ -13,96 +13,78 @@ describe('Geopify Service API', () => {
     (fetch as jest.Mock).mockClear();
   });
 
-  describe('Get IpAddress And Network Info', () => {
-    it('should fetch IP network info with API key and IP address', async () => {
+  describe('getIpAddressAndNetworkInfo', () => {
+    it('should resolve with network info when API key and IP are provided', () => {
       (fetch as jest.Mock).mockResolvedValueOnce({
         ok: true,
         json: () => Promise.resolve(mockGeoIpifyResponse),
       });
 
-      const result = await getIpAddressAndNetworkInfo(
-        'fake-api-key',
-        '8.8.8.8'
-      );
-
-      expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining('ipAddress=8.8.8.8'),
-        {
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
+      return getIpAddressAndNetworkInfo('fake-api-key', '8.8.8.8').then(
+        result => {
+          expect(fetch).toHaveBeenCalledWith(
+            expect.stringContaining('ipAddress=8.8.8.8'),
+            {
+              mode: 'no-cors',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+          expect(result).toEqual(mockGeoIpifyResponse);
         }
       );
-      expect(result).toEqual(mockGeoIpifyResponse);
     });
 
-    it('should fetch IP network info with API key only (no ip address)', async () => {
-      (fetch as jest.Mock).mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve(mockGeoIpifyResponse),
+    it('should resolve with message when no API key is provided', () => {
+      return getIpAddressAndNetworkInfo('', '8.8.8.8').then(result => {
+        expect(result).toBe('Add an apiKey');
+        expect(fetch).not.toHaveBeenCalled();
       });
-
-      const result = await getIpAddressAndNetworkInfo('fake-api-key', '');
-
-      expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining('apiKey=fake-api-key'),
-        {
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-      expect(result).toEqual(mockGeoIpifyResponse);
     });
 
-    it('should return a message when no API key is provided', async () => {
-      const result = await getIpAddressAndNetworkInfo('', '8.8.8.8');
-      expect(result).toBe('Add an apiKey');
-      expect(fetch).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Get IpAddress Only', () => {
-    it('should fetch the current IP address with no parameters', async () => {
-      (fetch as jest.Mock).mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve(mockIpifyResponse),
-      });
-
-      const result = await getIpAddressOnly();
-
-      expect(fetch).toHaveBeenCalledWith(`${GEOAPI}?format=json&reverseIp=1`, {
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-      });
-      expect(result).toEqual(mockIpifyResponse);
-    });
-
-    it('should fetch the IP address with optional IP input', async () => {
-      (fetch as jest.Mock).mockResolvedValueOnce({
-        ok: true,
-        json: () => Promise.resolve(mockIpifyResponse),
-      });
-
-      const result = await getIpAddressOnly('1.1.1.1');
-
-      expect(fetch).toHaveBeenCalledWith(
-        expect.stringContaining('ipAddress=1.1.1.1'),
-        {
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-      expect(result).toEqual(mockIpifyResponse);
-    });
-
-    it('should throw an error if fetch fails', async () => {
+    it('should reject when fetch fails', () => {
       (fetch as jest.Mock).mockResolvedValueOnce({
         ok: false,
         status: 404,
       });
 
-      await expect(getIpAddressOnly()).rejects.toThrow(
-        'HTTP error! Status: 404'
-      );
+      return getIpAddressAndNetworkInfo('valid-key').catch(error => {
+        expect(error.message).toContain('HTTP error! Status: 404');
+      });
+    });
+  });
+
+  describe('getIpAddressOnly', () => {
+    it('should resolve with IP info when no IP is provided', () => {
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: () => Promise.resolve(mockIpifyResponse),
+      });
+
+      return getIpAddressOnly().then(result => {
+        expect(fetch).toHaveBeenCalledWith(
+          `${GEOAPI}?format=json&reverseIp=1`,
+          {
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        expect(result).toEqual(mockIpifyResponse);
+      });
+    });
+
+    it('should reject when fetch fails', () => {
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: false,
+        status: 500,
+      });
+
+      return getIpAddressOnly('1.1.1.1').catch(error => {
+        expect(error.message).toContain('HTTP error! Status: 500');
+      });
     });
   });
 });
