@@ -5,7 +5,7 @@ FN:15,(anonymous_1)
 FN:22,(anonymous_2)
 FN:27,getIpAddressOnly
 FN:35,(anonymous_4)
-FN:42,(anonymous_5)
+FN:41,(anonymous_5)
 FNF:6
 FNH:6
 FNDA:3,getIpAddressAndNetworkInfo
@@ -31,10 +31,9 @@ DA:32,2
 DA:36,2
 DA:37,1
 DA:39,1
-DA:40,1
-DA:43,1
-LF:19
-LH:19
+DA:42,1
+LF:18
+LH:18
 BRDA:4,0,0,2
 BRDA:4,0,1,1
 BRDA:8,1,0,1
