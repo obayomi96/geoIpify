@@ -11,17 +11,14 @@ export function getIpAddressAndNetworkInfo(apiKey: string, ipAddress?: string) {
 
   return fetch(GEO_IPIFY_ENDPOINT, {
     mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
   })
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      return response.json();
+      const result = response.json();
+      return result;
     })
-    .then(data => data)
     .catch(error => {
       throw error;
     });
@@ -34,9 +31,6 @@ export function getIpAddressOnly(ipAddress?: string) {
 
   return fetch(IPIFY_ENDPOINT, {
     mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
   })
     .then(response => {
       if (!response.ok) {
@@ -44,7 +38,6 @@ export function getIpAddressOnly(ipAddress?: string) {
       }
       return response.json();
     })
-    .then(data => data)
     .catch(error => {
       throw error;
     });

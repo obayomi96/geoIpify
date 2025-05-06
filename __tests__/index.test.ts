@@ -26,9 +26,6 @@ describe('Geopify Service API', () => {
             expect.stringContaining('ipAddress=8.8.8.8'),
             {
               mode: 'no-cors',
-              headers: {
-                'Content-Type': 'application/json',
-              },
             }
           );
           expect(result).toEqual(mockGeoIpifyResponse);
@@ -67,9 +64,6 @@ describe('Geopify Service API', () => {
           `${GEOAPI}?format=json&reverseIp=1`,
           {
             mode: 'no-cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
           }
         );
         expect(result).toEqual(mockIpifyResponse);
