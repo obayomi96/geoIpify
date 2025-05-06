@@ -7,7 +7,7 @@
 
 Using the [`Geo Ipify`](https://geo.ipify.org/)
 
-This is built on [Ipify API](https://www.ipify.org), to get user's IP address & you can also get more information from the IP address by passing an `APIKEY` gotten from [`get ipify`](https://geo.ipify.org/) website.
+This is built on [Ipify API](https://www.ipify.org), to get user's IP address & you can also get more information from the IP address by passing an `APIKEY` gotten from [`geo ipify`](https://geo.ipify.org/) website.
 
 > To get IP address with all it's network information, retrieve a free API key from here https://geo.ipify.org/
 

@@ -1,35 +1,44 @@
 import { GEOAPI, GEOAPIV2 } from './utils/constants';
-const axios = require('axios');
 
-export async function getIpAddressAndNetworkInfo(
-  apiKey: string,
-  ipAddress?: string
-) {
-  try {
-    const GEO_IPIFY_ENDPOINT = ipAddress
-      ? `${GEOAPIV2}/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}&reverseIp=1`
-      : `${GEOAPIV2}/country,city?apiKey=${apiKey}&reverseIp=1`;
-    const url = GEO_IPIFY_ENDPOINT;
-    if (apiKey.length) {
-      const result = await axios.get(url);
-      return result;
-    } else {
-      return 'Add an apiKey';
-    }
-  } catch (error) {
-    throw error;
+export function getIpAddressAndNetworkInfo(apiKey: string, ipAddress?: string) {
+  const GEO_IPIFY_ENDPOINT = ipAddress
+    ? `${GEOAPIV2}/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}&reverseIp=1`
+    : `${GEOAPIV2}/country,city?apiKey=${apiKey}&reverseIp=1`;
+
+  if (!apiKey.length) {
+    return Promise.resolve('Add an apiKey');
   }
+
+  return fetch(GEO_IPIFY_ENDPOINT, {
+    mode: 'no-cors',
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = response.json();
+      return result;
+    })
+    .catch(error => {
+      throw error;
+    });
 }
 
-export async function getIpAddressOnly(ipAddress?: string) {
-  try {
-    const IPIFY_ENDPOINT = ipAddress
-      ? `${GEOAPI}?format=json&ipAddress=${ipAddress}&reverseIp=1`
-      : `${GEOAPI}?format=json&reverseIp=1`;
-    const url = IPIFY_ENDPOINT;
-    const result = await axios.get(url);
-    return result;
-  } catch (error) {
-    throw error;
-  }
+export function getIpAddressOnly(ipAddress?: string) {
+  const IPIFY_ENDPOINT = ipAddress
+    ? `${GEOAPI}?format=json&ipAddress=${ipAddress}&reverseIp=1`
+    : `${GEOAPI}?format=json&reverseIp=1`;
+
+  return fetch(IPIFY_ENDPOINT, {
+    mode: 'no-cors',
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .catch(error => {
+      throw error;
+    });
 }
