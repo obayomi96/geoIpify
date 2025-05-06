@@ -1,5 +1,4 @@
 import { GEOAPI, GEOAPIV2 } from './utils/constants';
-const axios = require('axios');
 
 export async function getIpAddressAndNetworkInfo(
   apiKey: string,
@@ -9,13 +8,17 @@ export async function getIpAddressAndNetworkInfo(
     const GEO_IPIFY_ENDPOINT = ipAddress
       ? `${GEOAPIV2}/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}&reverseIp=1`
       : `${GEOAPIV2}/country,city?apiKey=${apiKey}&reverseIp=1`;
-    const url = GEO_IPIFY_ENDPOINT;
-    if (apiKey.length) {
-      const result = await axios.get(url);
-      return result;
-    } else {
+
+    if (!apiKey.length) {
       return 'Add an apiKey';
     }
+
+    const response = await fetch(GEO_IPIFY_ENDPOINT);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
   } catch (error) {
     throw error;
   }
@@ -26,8 +29,12 @@ export async function getIpAddressOnly(ipAddress?: string) {
     const IPIFY_ENDPOINT = ipAddress
       ? `${GEOAPI}?format=json&ipAddress=${ipAddress}&reverseIp=1`
       : `${GEOAPI}?format=json&reverseIp=1`;
-    const url = IPIFY_ENDPOINT;
-    const result = await axios.get(url);
+
+    const response = await fetch(IPIFY_ENDPOINT);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const result = await response.json();
     return result;
   } catch (error) {
     throw error;
