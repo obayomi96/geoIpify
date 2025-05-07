@@ -50,7 +50,7 @@ describe('Geopify Service API', () => {
       const result = await getIpAddressOnly();
 
       expect(mockedAxios.get).toHaveBeenCalledWith(
-        `${GEOAPI}?format=json&reverseIp=1`
+        `${GEOAPI}?format=json`
       );
       expect(result).toEqual(mockIpifyResponse);
     });

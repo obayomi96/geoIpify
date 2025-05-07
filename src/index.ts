@@ -7,10 +7,10 @@ export async function getIpAddressAndNetworkInfo(
 ) {
   try {
     const GEO_IPIFY_ENDPOINT = ipAddress
-      ? `${GEOAPIV2}/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}&reverseIp=1`
-      : `${GEOAPIV2}/country,city?apiKey=${apiKey}&reverseIp=1`;
+      ? `${GEOAPIV2}/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`
+      : `${GEOAPIV2}/country,city?apiKey=${apiKey}`;
     const url = GEO_IPIFY_ENDPOINT;
-    if (apiKey.length) {
+    if (apiKey) {
       const result = await axios.get(url);
       return result;
     } else {
@@ -24,8 +24,8 @@ export async function getIpAddressAndNetworkInfo(
 export async function getIpAddressOnly(ipAddress?: string) {
   try {
     const IPIFY_ENDPOINT = ipAddress
-      ? `${GEOAPI}?format=json&ipAddress=${ipAddress}&reverseIp=1`
-      : `${GEOAPI}?format=json&reverseIp=1`;
+      ? `${GEOAPI}?format=json&ipAddress=${ipAddress}`
+      : `${GEOAPI}?format=json`;
     const url = IPIFY_ENDPOINT;
     const result = await axios.get(url);
     return result;
