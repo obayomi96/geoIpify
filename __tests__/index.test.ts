@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 import { getIpAddressAndNetworkInfo, getIpAddressOnly } from '../src/index';
 import {
   GEOAPI,
