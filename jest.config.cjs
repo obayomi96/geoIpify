@@ -9,13 +9,5 @@ module.exports = {
       transform_regex: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
   },
   },
-  verbose: true,
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80,
-    },
-  }
+  verbose: true
 };

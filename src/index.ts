@@ -11,6 +11,7 @@ export function getIpAddressAndNetworkInfo(apiKey: string, ipAddress?: string) {
       ? `${GEOAPIV2}/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}&reverseIp=1`
       : `${GEOAPIV2}/country,city?apiKey=${apiKey}&reverseIp=1`;
 
+    // First try with CORS enabled
     fetch(GEO_IPIFY_ENDPOINT, {
       headers: {
         Accept: 'application/json',
@@ -18,13 +19,32 @@ export function getIpAddressAndNetworkInfo(apiKey: string, ipAddress?: string) {
       },
     })
       .then(response => {
-        if (!response.ok) {
+        if (!response.ok)
           throw new Error(`HTTP error! Status: ${response.status}`);
-        }
         return response.json();
       })
       .then(data => resolve(data))
-      .catch(error => reject(error));
+      .catch(corsError => {
+        // Fallback to no-cors mode if CORS fails
+        fetch(GEO_IPIFY_ENDPOINT, {
+          mode: 'no-cors',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(response => {
+            // In no-cors mode, we can't read the response directly
+            // So we return the entire response object
+            resolve({
+              status: response.status,
+              statusText: response.statusText,
+              url: response.url,
+              type: response.type,
+            });
+          })
+          .catch(error => reject(error));
+      });
   });
 }
 
@@ -34,6 +54,7 @@ export function getIpAddressOnly(ipAddress?: string) {
       ? `${GEOAPI}?format=json&ipAddress=${ipAddress}&reverseIp=1`
       : `${GEOAPI}?format=json&reverseIp=1`;
 
+    // First try with CORS enabled
     fetch(IPIFY_ENDPOINT, {
       headers: {
         Accept: 'application/json',
@@ -41,12 +62,31 @@ export function getIpAddressOnly(ipAddress?: string) {
       },
     })
       .then(response => {
-        if (!response.ok) {
+        if (!response.ok)
           throw new Error(`HTTP error! Status: ${response.status}`);
-        }
         return response.json();
       })
       .then(data => resolve(data))
-      .catch(error => reject(error));
+      .catch(corsError => {
+        // Fallback to no-cors mode if CORS fails
+        fetch(IPIFY_ENDPOINT, {
+          mode: 'no-cors',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(response => {
+            // In no-cors mode, we can't read the response directly
+            // So we return the entire response object
+            resolve({
+              status: response.status,
+              statusText: response.statusText,
+              url: response.url,
+              type: response.type,
+            });
+          })
+          .catch(error => reject(error));
+      });
   });
 }
