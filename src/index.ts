@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { GEOAPI, GEOAPIV2 } from './utils/constants';
 
 export async function getIpAddressAndNetworkInfo(
   apiKey: string,
@@ -6,14 +7,11 @@ export async function getIpAddressAndNetworkInfo(
 ) {
   try {
     const GEO_IPIFY_ENDPOINT = ipAddress
-      ? `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}&reverseIp=1`
-      : `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&reverseIp=1`;
+      ? `${GEOAPIV2}/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`
+      : `${GEOAPIV2}/country,city?apiKey=${apiKey}`;
     const url = GEO_IPIFY_ENDPOINT;
     if (apiKey) {
       const result = await axios.get(url);
-      if ('development' === process.env.NODE_ENV) {
-        console.log('===>', result);
-      }
       return result;
     } else {
       return 'Add an apiKey';
@@ -26,13 +24,10 @@ export async function getIpAddressAndNetworkInfo(
 export async function getIpAddressOnly(ipAddress?: string) {
   try {
     const IPIFY_ENDPOINT = ipAddress
-      ? `https://api.ipify.org?format=json&ipAddress=${ipAddress}&reverseIp=1`
-      : `https://api.ipify.org?format=json&reverseIp=1`;
+      ? `${GEOAPI}?format=json&ipAddress=${ipAddress}`
+      : `${GEOAPI}?format=json`;
     const url = IPIFY_ENDPOINT;
     const result = await axios.get(url);
-    if ('development' === process.env.NODE_ENV) {
-      console.log('===>', result);
-    }
     return result;
   } catch (error) {
     throw error;
