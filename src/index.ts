@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { GEOAPI, GEOAPIV2 } from './utils/constants';
+
 export async function getIpAddressAndNetworkInfo(
   apiKey: string,
   ipAddress?: string
