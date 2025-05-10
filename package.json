@@ -72,7 +72,9 @@
     "ts-jest": "^29.3.2",
     "tsdx": "^0.14.1",
     "tslib": "^2.6.2",
-    "typescript": "^5.3.3",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
     "axios": "^1.9.0"
   }
 }
