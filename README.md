@@ -1,4 +1,4 @@
-# Geo Ipify [![codecov](https://codecov.io/gh/obayomi96/geoIpify/graph/badge.svg?token=NRIQWKBIBM)](https://codecov.io/gh/obayomi96/geoIpify) ![NPM Downloads](https://img.shields.io/npm/dm/geo-ipify)
+# Geo Ipify ![NPM Downloads](https://img.shields.io/npm/dm/geo-ipify)
 
 
 > Easily get your public IP address, network details, and internet service provider info.
