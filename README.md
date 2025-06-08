@@ -1,7 +1,8 @@
 # Geo Ipify ![NPM Downloads](https://img.shields.io/npm/dm/geo-ipify)
 
-
 > Easily get your public IP address, network details, and internet service provider info.
+
+<!-- GitAds-Verify: XHPNN31RGJ82REWA1VP58FYGISJSBAM5 -->
 
 > See live example usage [here](https://jetvisionv3.netlify.app)
 
