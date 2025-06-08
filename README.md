@@ -2,6 +2,9 @@
 
 > Easily get your public IP address, network details, and internet service provider info.
 
+## GitAds Sponsored
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=obayomi96/geoipify@github)](https://gitads.dev/v1/ad-track?source=obayomi96/geoipify@github)
+
 <!-- GitAds-Verify: XHPNN31RGJ82REWA1VP58FYGISJSBAM5 -->
 
 > See live example usage [here](https://jetvisionv3.netlify.app)
